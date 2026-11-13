@@ -1,0 +1,6 @@
+{
+  "name": "Regression Intelligence | Business Analytics",
+  "description": "Plataforma ejecutiva de regresión múltiple, simulación de escenarios empresariales, optimización de decisiones y reportes analíticos. By Zoraya Forero.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

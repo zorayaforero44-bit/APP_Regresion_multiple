@@ -1,0 +1,987 @@
+# PROMPT MAESTRO — DESARROLLO DE UNA APLICACIÓN DE REGRESIÓN MÚLTIPLE Y SIMULACIÓN DE ESCENARIOS EMPRESARIALES
+
+## 1. CONTEXTO / ROL
+
+Actúa como un equipo multidisciplinario de expertos integrado por:
+
+- Científico de datos sénior especializado en estadística aplicada, econometría y machine learning.
+- Estadístico experto en modelos de regresión lineal múltiple, inferencia estadística y análisis multivariado.
+- Economista especializado en pronósticos, simulación de escenarios y decisiones empresariales.
+- Ingeniero de software full stack experto en aplicaciones de analítica de datos desarrolladas con Google AI Studio.
+- Especialista en experiencia de usuario (UX/UI), visualización ejecutiva y dashboards interactivos.
+- Consultor de inteligencia de negocios y analítica prescriptiva.
+
+Tu misión es **diseñar y desarrollar una aplicación web integral, robusta, completamente funcional y lista para su despliegue en Vercel**, que permita analizar bases de datos, construir modelos de regresión múltiple, identificar variables relevantes, generar pronósticos, simular escenarios y formular recomendaciones empresariales basadas en evidencia estadística.
+
+### Fundamento académico
+
+Utiliza como punto de partida el documento adjunto:
+
+**“MODELOSPRONOSTICOMULTIVARIADOHUGO MARTINEZIAN.pdf”**, correspondiente a los contenidos académicos del profesor **Hugo Alexander Martínez Gallego**.
+
+Incorpora especialmente:
+
+- Formulación e interpretación de modelos de regresión múltiple.
+- Identificación de variables dependientes e independientes.
+- Interpretación de coeficientes.
+- Significancia individual mediante pruebas t.
+- Significancia conjunta mediante prueba F.
+- Coeficiente de determinación R².
+- Coeficiente de determinación ajustado o corregido.
+- Error de predicción.
+- Pronósticos y simulación de escenarios empresariales.
+- Aplicación de regresión en ventas y marketing.
+
+Amplía estas bases mediante documentación científica y técnica confiable, priorizando:
+
+- NIST Engineering Statistics Handbook.
+- Penn State — STAT 501 y cursos de estadística aplicada.
+- Documentación oficial de statsmodels.
+- Documentación oficial de scikit-learn.
+- Documentación oficial de SciPy.
+- Documentación oficial de pandas.
+- Literatura académica sobre regresión, validación predictiva, simulación Monte Carlo, bootstrap y análisis de sensibilidad.
+
+No presentes información estadística incorrecta ni afirmaciones sin sustento.
+
+El material académico constituye una referencia conceptual, pero la aplicación debe implementar procedimientos actualizados y estadísticamente correctos.
+
+## 2. CONSULTA / TAREA PRINCIPAL
+
+Desarrolla una aplicación web denominada:
+
+**Regression Intelligence | Business Analytics**
+
+Marca personal:
+
+**Zoraya Forero**
+
+Identidad profesional:
+
+*Economista | Análisis de datos y automatización de procesos | Análisis financiero | Reportes para la toma de decisiones.*
+
+La aplicación deberá permitir que un usuario, aun sin conocimientos avanzados de estadística, pueda cargar una base de datos y recorrer un proceso analítico integral:
+
+**Cargar datos → Comprender el negocio → Explorar → Limpiar → Transformar → Seleccionar variables → Construir modelos → Validar → Interpretar → Simular → Recomendar → Exportar.**
+
+No debe limitarse a ejecutar una regresión matemática. Debe funcionar como una herramienta de inteligencia analítica orientada a resolver preguntas de negocio.
+
+### Requisito fundamental
+
+La aplicación debe ser REALMENTE FUNCIONAL.
+
+Todos los botones, formularios, módulos, gráficos, cálculos, filtros, simuladores y opciones de exportación deben ejecutar operaciones reales.
+
+No utilices datos ficticios para simular que las funcionalidades están operando.
+
+No generes resultados precalculados, valores estadísticos inventados ni recomendaciones desconectadas de los resultados obtenidos.
+
+Cuando una funcionalidad no pueda ejecutarse por limitaciones del entorno, implementa una arquitectura viable que permita su funcionamiento efectivo o informa de manera explícita la limitación.
+
+---
+
+## 3. ESPECIFICACIONES FUNCIONALES
+
+### MÓDULO 1. CARGA INTELIGENTE DE DATOS
+
+La aplicación debe permitir cargar bases de diferentes sectores económicos y tipos de negocio.
+
+Admitir, como mínimo:
+
+- CSV.
+- Excel XLSX y XLS.
+- JSON.
+- TSV.
+- Parquet, cuando la arquitectura lo permita.
+
+Permitir importar datos con diferentes configuraciones de separadores, codificación y formatos numéricos.
+
+Debe poder recibir bases con variables:
+
+- Numéricas continuas y discretas.
+- Categóricas nominales y ordinales.
+- Binarias.
+- Fechas y horas.
+- Temporales.
+- Geográficas.
+- Textuales.
+
+Reconocer automáticamente los tipos de datos y permitir corregir manualmente la clasificación.
+
+La aplicación debe admitir datos de diferentes industrias, sin estar limitada a ventas.
+
+Si recibe datos no estructurados, debe disponer de una etapa de estructuración o indicar qué información necesita para convertirlos en variables analizables.
+
+No todos los datos serán adecuados para una regresión múltiple. La aplicación debe identificar estas limitaciones, explicar por qué ocurren y recomendar alternativas.
+
+**Vista previa obligatoria:**
+
+Mostrar inmediatamente las primeras cinco filas reales del archivo cargado, respetando los nombres originales de las columnas.
+
+Presentar además:
+
+- Total de registros.
+- Número de variables.
+- Tipos de datos detectados.
+- Valores ausentes.
+- Registros duplicados.
+- Porcentaje de completitud.
+- Variables con valores constantes.
+- Posibles identificadores.
+- Variables potencialmente predictoras.
+- Alertas de calidad de datos.
+
+Incorporar un diccionario de datos editable.
+
+### MÓDULO 2. CONTEXTO Y PREGUNTA DE NEGOCIO
+
+Antes de construir cualquier modelo, la aplicación debe comprender el problema que se desea resolver.
+
+Permitir ingresar:
+
+1. Sector económico.
+2. Actividad empresarial.
+3. Descripción de la base.
+4. Pregunta de negocio.
+5. Objetivo del análisis.
+6. Unidad de análisis.
+7. Horizonte de predicción.
+8. Restricciones empresariales.
+9. Variables controlables y no controlables.
+
+Ejemplos de preguntas:
+
+- ¿Qué factores explican las ventas?
+- ¿Cómo cambiarían los ingresos si aumentamos la inversión en publicidad?
+- ¿Qué variables explican los costos operativos?
+- ¿Cómo influye el precio sobre la demanda?
+- ¿Qué factores determinan el recaudo?
+- ¿Qué variables influyen en la rentabilidad?
+- ¿Cómo cambiaría la productividad ante una modificación de recursos?
+
+La inteligencia artificial deberá interpretar el contexto y relacionarlo con las columnas reales de la base.
+
+No debe inventar variables inexistentes.
+
+Puede proponer variables adicionales relevantes para el negocio, pero debe identificarlas como variables externas que requieren información adicional.
+
+### MÓDULO 3. LIMPIEZA Y PREPARACIÓN AUTOMÁTICA
+
+Crear un pipeline reproducible de tratamiento de datos.
+
+**A. Diagnóstico de calidad**
+
+Identificar:
+
+- Duplicados.
+- Datos faltantes.
+- Valores imposibles.
+- Errores de formato.
+- Categorías inconsistentes.
+- Variables constantes.
+- Distribuciones anómalas.
+- Valores extremos.
+- Datos potencialmente mal digitados.
+- Inconsistencias entre variables.
+
+**B. Imputación según el tipo de variable**
+
+La imputación deberá basarse en la naturaleza estadística de los datos, su distribución y el contexto del negocio.
+
+Para variables numéricas evaluar:
+
+- Mediana.
+- Media.
+- Imputación por grupos.
+- KNN Imputer.
+- Métodos multivariados, cuando sean apropiados.
+- Imputación temporal para series cronológicas, respetando la información disponible.
+
+Para variables categóricas evaluar:
+
+- Moda.
+- Categoría explícita de ausencia.
+- Imputación por grupos.
+- Métodos probabilísticos fundamentados, cuando corresponda.
+
+Para fechas evaluar la continuidad y naturaleza temporal.
+
+No imputar automáticamente identificadores, variables objetivo ni variables estructuralmente ausentes sin justificación.
+
+Cuando falte la variable dependiente, excluir esos registros del entrenamiento supervisado o aplicar una estrategia estadística explícitamente justificada. Nunca completar valores objetivo con predicciones y tratarlos como observaciones reales.
+
+Permitir al usuario aprobar o modificar el método de imputación.
+
+**C. Tratamiento de valores atípicos**
+
+Utilizar, cuando corresponda:
+
+- Rango intercuartílico.
+- Z-score.
+- Diagnóstico de observaciones influyentes.
+- Distancia de Cook.
+- Análisis contextual.
+
+No eliminar valores extremos únicamente por ser estadísticamente inusuales.
+
+**D. Transformaciones**
+
+Incorporar:
+
+- Codificación one-hot.
+- Codificación ordinal justificada.
+- Escalamiento cuando sea necesario.
+- Transformaciones logarítmicas cuando sean válidas.
+- Transformaciones de variables sesgadas.
+- Creación de variables derivadas.
+- Interacciones.
+- Términos polinómicos cuando exista justificación.
+
+Prevenir fugas de información.
+
+El ajuste de imputadores, transformadores y codificadores debe realizarse exclusivamente con datos de entrenamiento dentro de un pipeline reutilizable.
+
+Mostrar siempre las cinco filas iniciales y una vista de los datos transformados, diferenciando ambas versiones.
+
+Presentar un registro detallado de todas las operaciones.
+
+### MÓDULO 4. ANÁLISIS EXPLORATORIO Y CORRELACIONES
+
+Generar automáticamente un análisis exploratorio de datos (EDA).
+
+Incluir:
+
+- Estadísticos descriptivos.
+- Histogramas.
+- Boxplots.
+- Gráficos de dispersión.
+- Distribuciones por grupos.
+- Matrices de correlación.
+- Análisis de relaciones entre variables.
+- Identificación de patrones.
+- Análisis de tendencias cuando existan fechas.
+
+**Correlaciones según el tipo de variable**
+
+Seleccionar el método apropiado:
+
+- Pearson para relaciones lineales entre variables cuantitativas.
+- Spearman para relaciones monotónicas o datos ordinales.
+- Kendall cuando resulte apropiado.
+- Medidas de asociación entre variables categóricas.
+- Métodos de comparación de distribuciones para combinaciones categóricas-numéricas.
+
+Mostrar la magnitud, dirección y significado de las relaciones.
+
+Permitir filtrar variables por nivel de asociación.
+
+Considerar las reglas y restricciones del negocio antes de recomendar relaciones.
+
+Advertir expresamente que correlación no implica causalidad.
+
+Identificar posibles problemas de multicolinealidad mediante matriz de correlación y VIF.
+
+No excluir automáticamente variables solo porque tengan correlaciones altas. Evaluar también su fundamento económico, redundancia, estabilidad y utilidad predictiva.
+
+### MÓDULO 5. SELECCIÓN INTELIGENTE DE VARIABLES
+
+Este módulo es esencial.
+
+La aplicación debe sugerir posibles variables dependientes (Y) e independientes (X) considerando:
+
+- Pregunta de negocio.
+- Tipo de datos.
+- Significado de cada variable.
+- Disponibilidad temporal.
+- Relaciones estadísticas.
+- Conocimiento económico.
+- Coherencia empresarial.
+- Posibles fugas de información.
+- Capacidad explicativa y predictiva.
+
+**Selección de la variable dependiente**
+
+Mostrar una lista de variables potencialmente aptas para regresión múltiple, ordenadas por relevancia para la pregunta planteada.
+
+Para cada sugerencia mostrar:
+
+- Nombre de la variable.
+- Tipo.
+- Justificación empresarial.
+- Viabilidad estadística.
+- Advertencias.
+
+El usuario debe elegir la variable dependiente final.
+
+**Selección de variables independientes**
+
+Proponer las variables candidatas y explicar por qué podrían contribuir a explicar Y.
+
+Clasificarlas como:
+
+- Recomendadas.
+- Opcionales.
+- Requieren revisión.
+- No recomendadas.
+
+Permitir que el usuario agregue o elimine variables manualmente.
+
+No utilizar variables con información posterior al momento de predicción.
+
+No utilizar automáticamente identificadores únicos, variables objetivo derivadas o columnas que produzcan fuga de información.
+
+Mostrar una explicación ejecutiva de la selección.
+
+### MÓDULO 6. CONSTRUCCIÓN Y COMPARACIÓN DE MODELOS DE REGRESIÓN
+
+Construir modelos de regresión múltiple utilizando los datos reales seleccionados.
+
+Implementar, como mínimo:
+
+1. Regresión lineal múltiple mediante mínimos cuadrados ordinarios (OLS).
+2. Modelos con diferentes subconjuntos de variables.
+3. Modelos con interacciones justificadas.
+4. Modelos con transformaciones.
+5. Regresión Ridge.
+6. Regresión Lasso.
+7. Elastic Net.
+
+Diferenciar claramente los modelos de inferencia estadística de los modelos enfocados en predicción.
+
+**Criterios obligatorios de evaluación**
+
+- R².
+- R² corregido o ajustado (CR2).
+- RMSE.
+- MAE.
+- Estadístico F.
+- Significancia global de la prueba F.
+- Estadísticos t.
+- P-valores de coeficientes, cuando el método de estimación permita inferencia válida.
+- Intervalos de confianza.
+- VIF.
+- Análisis de residuos.
+
+Incorporar pruebas de supuestos y diagnósticos:
+
+- Linealidad.
+- Independencia de errores.
+- Homocedasticidad.
+- Normalidad de residuos para fines inferenciales.
+- Multicolinealidad.
+- Observaciones influyentes.
+- Estabilidad del modelo.
+
+Aplicar pruebas como Breusch-Pagan, Durbin-Watson y diagnósticos gráficos cuando corresponda.
+
+Cuando se detecte heterocedasticidad, considerar errores estándar robustos.
+
+**Selección del mejor modelo**
+
+Implementar un sistema multicriterio que tenga en cuenta:
+
+- R² ajustado elevado.
+- RMSE de validación reducido.
+- MAE de validación reducido.
+- Coherencia y estabilidad de coeficientes.
+- Significancia individual y global cuando corresponda.
+- Cumplimiento razonable de supuestos.
+- Complejidad.
+- Capacidad de generalización.
+- Interpretabilidad.
+- Utilidad para la pregunta de negocio.
+
+No seleccionar un modelo únicamente por su R² más alto.
+
+No considerar automáticamente superior un modelo con más variables.
+
+No utilizar p-valores convencionales de OLS como si fueran directamente equivalentes a los resultados de Ridge, Lasso o Elastic Net.
+
+Seleccionar los modelos predictivos principalmente con resultados fuera de muestra y utilizar criterios inferenciales cuando la finalidad sea explicar relaciones.
+
+Explicar cualquier conflicto entre precisión predictiva y significancia estadística.
+
+Utilizar validación cruzada o particiones entrenamiento-validación-prueba, según el tamaño y la estructura de los datos.
+
+En series temporales utilizar validación cronológica y evitar particiones aleatorias que filtren información futura.
+
+Para muestras pequeñas informar la incertidumbre y las limitaciones del resultado.
+
+**Resultado esperado:**
+
+Presentar un ranking comparativo y seleccionar el modelo más adecuado para el objetivo empresarial, justificando la elección en términos estadísticos y de negocio.
+
+### MÓDULO 7. INTERPRETACIÓN DE COEFICIENTES
+
+Mostrar la ecuación estimada del modelo seleccionado.
+
+Explicar:
+
+- Intercepto.
+- Coeficiente de cada variable.
+- Signo.
+- Magnitud.
+- Unidad de medida.
+- Interpretación ceteris paribus.
+- Significancia estadística.
+- Intervalo de confianza.
+- Relevancia práctica.
+- Limitaciones de interpretación.
+
+Las interpretaciones deben adaptarse a las unidades y transformaciones utilizadas.
+
+Ejemplo:
+
+“Si la inversión publicitaria aumenta en una unidad monetaria, el modelo estima una variación promedio de X unidades en las ventas, manteniendo constantes las demás variables”.
+
+Diferenciar asociación estadística de efecto causal.
+
+Cuando corresponda, explicar efectos porcentuales, elasticidades estimadas y efectos marginales.
+
+Incluir gráficos interactivos que ayuden a comprender la contribución de cada variable.
+
+### MÓDULO 8. MODELADO INDIVIDUAL DE VARIABLES PARA SIMULACIÓN
+
+**Este módulo constituye una funcionalidad central y diferenciadora de la aplicación.**
+
+Antes de simular escenarios, la aplicación debe analizar cómo se comporta cada variable independiente y determinar la mejor estrategia estadística para generar valores futuros o hipotéticos plausibles.
+
+No crear escenarios mediante incrementos arbitrarios o valores aleatorios sin fundamento.
+
+Para cada variable independiente realizar:
+
+**Etapa A. Caracterización**
+
+- Identificar su naturaleza estadística.
+- Analizar distribución.
+- Identificar valores mínimos y máximos.
+- Detectar tendencias.
+- Analizar estacionalidad.
+- Evaluar dependencia temporal.
+- Detectar relaciones con otras variables.
+- Identificar límites y restricciones empresariales.
+
+**Etapa B. Selección del mecanismo de simulación**
+
+Evaluar, cuando sea pertinente:
+
+- Regresión lineal simple.
+- Regresión múltiple auxiliar.
+- Modelos polinomiales.
+- Modelos de tendencia temporal.
+- Modelos autorregresivos.
+- Modelos de series temporales.
+- Distribuciones paramétricas.
+- Bootstrap.
+- Muestreo de distribuciones empíricas.
+- Simulación Monte Carlo.
+- Modelos condicionales que respeten dependencias entre variables.
+
+No es obligatorio construir una regresión para cada variable.
+
+Debe seleccionarse el procedimiento más apropiado según su naturaleza, calidad de información y objetivo empresarial.
+
+Cuando una variable categórica necesite simulación, utilizar métodos compatibles con categorías y probabilidades.
+
+Cuando una variable sea controlable, permitir valores definidos directamente por el usuario.
+
+Cuando una variable dependa de otras, priorizar simulaciones condicionales y preservar relaciones consistentes.
+
+No crear modelos circulares ni utilizar información futura para construir valores de predictores.
+
+**Etapa C. Justificación**
+
+Para cada variable presentar una tarjeta con:
+
+- Nombre.
+- Tipo.
+- Comportamiento histórico.
+- Método de simulación recomendado.
+- Alternativas evaluadas.
+- Evidencia de validación.
+- Justificación.
+- Restricciones aplicables.
+- Nivel de incertidumbre.
+- Posibilidad de ajustar el método manualmente.
+
+**Etapa D. Generación de datos simulados**
+
+Permitir generar valores mediante el método seleccionado.
+
+Distinguir claramente:
+
+- Datos reales.
+- Datos imputados.
+- Datos transformados.
+- Datos simulados.
+- Valores definidos por el usuario.
+
+No mezclar datos sintéticos con datos reales de entrenamiento sin una metodología explícita, justificada y validada.
+
+Los escenarios deben emplear el modelo predictivo entrenado con datos adecuados, sin que el proceso de simulación altere de forma inadvertida sus coeficientes.
+
+### MÓDULO 9. SIMULADOR INTELIGENTE DE ESCENARIOS
+
+Construir un laboratorio interactivo de simulación de escenarios empresariales.
+
+El usuario debe poder modificar cualquier variable independiente admisible y observar el resultado estimado de la variable dependiente.
+
+Incorporar controles como:
+
+- Sliders.
+- Campos numéricos.
+- Selectores.
+- Rangos.
+- Parámetros porcentuales.
+- Horizonte temporal, cuando aplique.
+- Número de simulaciones.
+- Restricciones de negocio.
+
+Permitir crear:
+
+**Escenario base:** refleja una observación o situación de referencia claramente identificada.
+
+**Escenario optimista:** combinación empresarialmente plausible de variables favorables.
+
+**Escenario conservador:** valores prudentes y restricciones relevantes.
+
+**Escenario adverso:** condiciones desfavorables plausibles.
+
+**Escenario personalizado:** diseñado libremente por el usuario dentro de restricciones definidas.
+
+**Escenario probabilístico:** simulación basada en incertidumbre y métodos estadísticos apropiados.
+
+La aplicación no debe asumir que aumentar todas las variables produce mejores resultados.
+
+El efecto favorable o desfavorable deberá determinarse a partir del modelo y de los objetivos empresariales.
+
+Para cada escenario mostrar:
+
+- Valores originales de las variables.
+- Valores simulados.
+- Variación absoluta.
+- Variación porcentual.
+- Predicción resultante de Y.
+- Diferencia frente al escenario base.
+- Métricas económicas relevantes.
+- Incertidumbre de la predicción.
+- Advertencias estadísticas.
+- Recomendación empresarial.
+
+Calcular intervalos de predicción cuando sea estadísticamente viable.
+
+Diferenciar el intervalo de confianza de la media esperada del intervalo de predicción de una nueva observación.
+
+Evitar extrapolaciones injustificadas fuera del rango conocido.
+
+Permitir simular múltiples variables simultáneamente, preservando las dependencias necesarias.
+
+### MÓDULO 10. MOTOR DE RECOMENDACIONES EMPRESARIALES
+
+La aplicación debe actuar como consultor analítico.
+
+Por cada escenario generado debe responder automáticamente la pregunta de negocio.
+
+La recomendación debe fundamentarse en:
+
+- Resultado del modelo.
+- Variaciones estimadas.
+- Importancia de variables.
+- Restricciones empresariales.
+- Incertidumbre.
+- Comparación con el escenario base.
+- Riesgos identificados.
+
+Presentar cinco apartados:
+
+**1. Hallazgo principal**
+
+¿Qué está indicando el modelo?
+
+**2. Interpretación empresarial**
+
+¿Qué significa el resultado para el negocio?
+
+**3. Acción recomendada**
+
+¿Qué debería evaluar o implementar la organización?
+
+**4. Impacto esperado**
+
+¿Cuál es el cambio estimado y bajo qué supuestos?
+
+**5. Riesgos y limitaciones**
+
+¿Qué factores pueden afectar el resultado?
+
+Las recomendaciones deben ser específicas y contextualizadas.
+
+No generar textos genéricos.
+
+No inventar cifras ni atribuir causalidad a relaciones observacionales.
+
+Cuando la información sea insuficiente para formular una recomendación confiable, señalarlo e indicar qué datos adicionales se requieren.
+
+Distinguir entre predicción estadística, recomendación empresarial y demostración causal.
+
+### MÓDULO 11. OPTIMIZACIÓN DE DECISIONES
+
+Incorporar un módulo adicional que permita identificar combinaciones de variables controlables capaces de mejorar una meta empresarial.
+
+Por ejemplo:
+
+- Maximizar ventas.
+- Mejorar rentabilidad.
+- Reducir costos.
+- Aumentar productividad.
+- Optimizar recursos.
+- Mejorar el recaudo.
+
+Permitir definir:
+
+- Función objetivo.
+- Variables que pueden modificarse.
+- Límites de cada variable.
+- Presupuesto disponible.
+- Restricciones.
+- Condiciones mínimas aceptables.
+
+Utilizar métodos matemáticos de optimización apropiados para el modelo y las restricciones.
+
+Proponer escenarios factibles.
+
+Mostrar la solución recomendada, el impacto predicho y las restricciones activas.
+
+Aclarar que optimizar una predicción no demuestra que una intervención producirá necesariamente el resultado estimado.
+
+### MÓDULO 12. DASHBOARD EJECUTIVO
+
+Diseñar un dashboard profesional, atractivo, intuitivo y dinámico.
+
+Secciones:
+
+1. Resumen de la base.
+2. Calidad de los datos.
+3. Exploración y correlaciones.
+4. Variables seleccionadas.
+5. Comparación de modelos.
+6. Modelo recomendado.
+7. Interpretación de coeficientes.
+8. Modelos individuales para simulación.
+9. Simulador de escenarios.
+10. Recomendaciones empresariales.
+11. Optimización.
+12. Informe ejecutivo.
+
+Elementos visuales:
+
+- Tarjetas KPI.
+- Matrices de correlación.
+- Gráficos de dispersión.
+- Comparadores de modelos.
+- Gráficos de residuos.
+- Coeficientes con intervalos de confianza.
+- Gráficos de sensibilidad.
+- Simulaciones.
+- Distribuciones de resultados.
+- Tablas interactivas.
+- Comparaciones de escenarios.
+
+Cada visualización debe aportar información relevante, no utilizarse únicamente como decoración.
+
+Incluir explicaciones contextuales breves para métricas como R² ajustado, RMSE, p-valor y VIF.
+
+### MÓDULO 13. EXPORTACIÓN DE RESULTADOS
+
+Permitir exportar:
+
+- Datos depurados.
+- Diccionario de variables.
+- Transformaciones aplicadas.
+- Modelos ajustados.
+- Coeficientes.
+- Métricas de evaluación.
+- Resultados de validación.
+- Comparación de modelos.
+- Escenarios simulados.
+- Recomendaciones.
+- Informe ejecutivo.
+
+Formatos:
+
+- Excel.
+- CSV.
+- PDF.
+- JSON cuando corresponda.
+
+El informe ejecutivo debe incluir:
+
+- Pregunta de negocio.
+- Caracterización de datos.
+- Metodología.
+- Variables seleccionadas.
+- Modelo recomendado.
+- Justificación estadística.
+- Interpretaciones.
+- Escenarios.
+- Conclusiones.
+- Recomendaciones.
+- Limitaciones.
+- Fuentes metodológicas.
+
+Incorporar fecha de análisis, número de registros y trazabilidad de transformaciones.
+
+---
+
+## 4. ARQUITECTURA TÉCNICA
+
+Diseñar una arquitectura realista y preparada para producción.
+
+### Frontend
+
+Utilizar React con TypeScript, componentes modulares y visualizaciones interactivas.
+
+Implementar navegación intuitiva, diseño responsive, validación de formularios y estados de carga y error.
+
+### Motor estadístico
+
+Preferir un backend Python cuando la aplicación necesite cálculos estadísticos avanzados.
+
+Bibliotecas recomendadas:
+
+- pandas y NumPy para procesamiento.
+- scikit-learn para pipelines y validación.
+- statsmodels para inferencia y regresión OLS.
+- SciPy para pruebas y optimización.
+- Bibliotecas de visualización compatibles con la arquitectura.
+- Herramientas de simulación numérica cuando corresponda.
+
+Google AI Studio puede generar el código y la interfaz, pero no debe asumirse que el navegador o Vercel ejecutan directamente bibliotecas Python.
+
+Si se necesita un backend independiente, implementar la comunicación mediante API y proporcionar instrucciones de despliegue.
+
+### Integración con IA
+
+Utilizar Gemini para:
+
+- Interpretar preguntas de negocio.
+- Sugerir variables.
+- Explicar resultados.
+- Generar recomendaciones.
+- Ayudar al usuario a comprender métricas.
+
+**Gemini no debe inventar resultados estadísticos ni reemplazar las operaciones matemáticas verificables.**
+
+El cálculo numérico debe ejecutarse mediante procedimientos reproducibles.
+
+Las recomendaciones de IA deben basarse exclusivamente en resultados calculados y contexto proporcionado.
+
+### Seguridad y tratamiento de información
+
+- No exponer claves de API en el frontend.
+- Validar archivos antes de procesarlos.
+- Manejar errores sin bloquear la aplicación.
+- Establecer límites configurables de carga.
+- Proteger información confidencial.
+- Evitar enviar registros sensibles completos al modelo de IA cuando no sea necesario.
+- Informar al usuario sobre el tratamiento y envío de datos.
+
+### Persistencia y experiencia de uso
+
+Permitir guardar o exportar proyectos, configuraciones, selección de variables y escenarios.
+
+No perder los resultados al cambiar entre pestañas o módulos.
+
+Establecer identificadores para los proyectos analíticos.
+
+Garantizar que el pipeline aplicado durante entrenamiento sea el mismo utilizado al generar predicciones.
+
+---
+
+## 5. IDENTIDAD VISUAL Y MARCA PERSONAL
+
+La aplicación debe conservar mi marca personal:
+
+**Zoraya Forero**
+
+Perfil:
+
+Economista especializada en análisis de datos, automatización de procesos y aplicación de modelos analíticos para la toma de decisiones.
+
+### Estilo
+
+Crear una aplicación con diseño ejecutivo premium:
+
+- Elegante.
+- Moderna.
+- Minimalista.
+- Tecnológica.
+- Profesional.
+- Intuitiva.
+- Visualmente sofisticada.
+- Sin saturación de colores ni elementos.
+
+Usar una paleta profesional con azul profundo, blanco, gris y acentos turquesa o violeta.
+
+Utilizar tipografía contemporánea, gráficos claros, jerarquía visual y suficiente espacio entre componentes.
+
+Debe transmitir rigor estadístico, confianza empresarial e innovación tecnológica.
+
+### Identificación
+
+Mostrar:
+
+**Regression Intelligence**
+
+*Business Analytics & Decision Intelligence*
+
+**By Zoraya Forero**
+
+Incluir mi nombre en la pantalla inicial, la navegación o pie de página y los informes exportados.
+
+### Reconocimiento académico
+
+Incorporar en una sección denominada “Fundamentos académicos y metodología”:
+
+“Aplicación desarrollada tomando como referencia académica los conceptos de regresión múltiple y pronósticos empresariales abordados por el profesor Hugo Alexander Martínez Gallego, complementados con metodologías estadísticas y herramientas de analítica de datos”.
+
+No presentar al profesor como desarrollador, propietario o avalador de la aplicación.
+
+---
+
+## 6. CRITERIOS DE CALIDAD
+
+### Calidad estadística
+
+Todas las métricas deberán calcularse correctamente.
+
+Evitar:
+
+- Fuga de información.
+- Sobreajuste.
+- Selección arbitraria de modelos.
+- Uso incorrecto de pruebas estadísticas.
+- Correlaciones interpretadas como causalidad.
+- Imputaciones inadecuadas.
+- Simulaciones incoherentes.
+- Predicciones fuera de contexto.
+- Conclusiones que superen la evidencia disponible.
+
+No afirmar que p-valor menor a 0,05 garantiza utilidad predictiva.
+
+No afirmar que un R² elevado implica causalidad.
+
+No utilizar los datos de prueba para seleccionar repetidamente hiperparámetros.
+
+No considerar un modelo válido únicamente por tener métricas aparentemente favorables.
+
+### Calidad de las simulaciones
+
+Comprobar:
+
+- Restricciones empresariales.
+- Rangos plausibles.
+- Relaciones entre predictores.
+- Incertidumbre.
+- Adecuación del método de simulación.
+- Ausencia de dependencias circulares.
+- Reproducibilidad mediante semillas aleatorias configurables.
+
+Las simulaciones deben representar hipótesis consistentes, no resultados artificiales para demostrar que la aplicación funciona.
+
+### Calidad funcional
+
+Implementar pruebas con diferentes estructuras de datos:
+
+- Datos completos.
+- Datos faltantes.
+- Variables categóricas.
+- Variables numéricas.
+- Datos temporales.
+- Multicolinealidad.
+- Bases pequeñas.
+- Bases con muchas variables.
+- Variables objetivo inadecuadas.
+- Datos inconsistentes.
+
+La aplicación debe presentar mensajes comprensibles y alternativas cuando no sea viable entrenar un modelo.
+
+### Calidad de experiencia
+
+Un usuario debe poder completar el análisis sin escribir código.
+
+Ofrecer simultáneamente:
+
+**Modo guiado:** el sistema recomienda y explica cada operación.
+
+**Modo avanzado:** el usuario puede controlar métodos, variables, validación, parámetros y simulaciones.
+
+---
+
+## 7. FORMATO DE RESPUESTA Y ENTREGABLES
+
+No entregues únicamente un concepto visual, una maqueta o un prototipo estático.
+
+**Construye la aplicación y genera su código funcional.**
+
+Desarrolla e integra los módulos descritos, priorizando un flujo completo que vaya desde la carga del archivo hasta la generación de recomendaciones.
+
+La entrega debe incluir:
+
+1. Aplicación web operativa.
+2. Código fuente estructurado.
+3. Motor de procesamiento y modelado.
+4. Integración entre frontend y backend, cuando corresponda.
+5. Sistema de simulaciones de variables.
+6. Comparador estadístico de modelos.
+7. Motor de recomendaciones empresariales.
+8. Dashboards y reportes descargables.
+9. Manejo de errores y validaciones.
+10. Instrucciones para publicar mediante GitHub y Vercel.
+11. Pruebas reproducibles que acrediten el funcionamiento.
+12. Documentación básica para mantenimiento y ampliación.
+
+No afirmar que una funcionalidad está completa si no existe una implementación ejecutable.
+
+Si determinadas características requieren servicios externos, identificar y configurar las dependencias necesarias.
+
+## 8. PRUEBA INTEGRAL OBLIGATORIA
+
+Antes de declarar terminada la aplicación, verifica de manera reproducible este recorrido:
+
+1. Cargar una base de datos.
+2. Mostrar sus primeras cinco filas reales.
+3. Identificar correctamente los tipos de variables.
+4. Detectar valores faltantes.
+5. Imputar utilizando métodos adecuados.
+6. Ejecutar el análisis exploratorio y de correlaciones.
+7. Interpretar una pregunta empresarial.
+8. Sugerir variables dependientes e independientes coherentes.
+9. Permitir que el usuario las seleccione.
+10. Entrenar varios modelos de regresión.
+11. Calcular R² ajustado, RMSE, pruebas t, p-valores y las demás métricas aplicables.
+12. Comparar modelos y recomendar uno justificadamente.
+13. Interpretar todos los coeficientes relevantes.
+14. Determinar un método de simulación apropiado para cada variable independiente.
+15. Generar escenarios consistentes.
+16. Obtener predicciones reales del modelo.
+17. Comparar resultados entre escenarios.
+18. Formular una recomendación contextualizada para cada simulación.
+19. Exportar un informe real.
+20. Verificar que la aplicación pueda ejecutarse correctamente después de su despliegue.
+
+Utiliza datos de prueba identificados como tales para comprobar los módulos, sin confundirlos con información empresarial real.
+
+## RESULTADO FINAL ESPERADO
+
+Quiero una aplicación que vaya más allá de realizar regresiones estadísticas.
+
+Debe funcionar como una plataforma de inteligencia de negocios capaz de transformar una base de datos en:
+
+**Conocimiento → Modelos → Predicciones → Escenarios → Decisiones.**
+
+La aplicación debe ayudar al usuario a entender qué variables explican un resultado, qué modelo proporciona la evidencia más sólida, qué escenarios son plausibles y qué decisiones empresariales conviene evaluar.
+
+**Prioridad absoluta: rigor estadístico, funcionamiento real, simulaciones fundamentadas, recomendaciones útiles y una experiencia visual ejecutiva de alta calidad.**
+
+Desarrolla directamente la aplicación con estas especificaciones y no te limites a describir cómo podría construirse.
